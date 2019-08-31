@@ -12,7 +12,7 @@ public class a1 {
     public static String dictionaryFileString = "dictionary.txt";
     public static String sampleFileString = "sample.txt";
     public static int lineIndex = 0;
-    
+    public static int letterPostions[][];
 
 
     
@@ -66,9 +66,14 @@ public class a1 {
            
            
             file = new File(sampleFileString);  
-            readInFile(file);
+            //readInFile(file);
             System.out.println("total words: " + sampleWordCount);
             System.out.println("Unique words: " + uniqueWordCount);
+
+
+            //Start of step 4
+            sortArrays();
+        
 
 
 
@@ -213,7 +218,7 @@ public class a1 {
                 return;
             }
             if ( words[middle].equals(reverseWord)  && middle < index ) {
-                System.out.println("Found!: " + words[middle]);
+                //System.out.println("Found!: " + words[middle]);
                 palindromeCount++;
                 return;
             }
@@ -244,4 +249,41 @@ public class a1 {
         } 
        
    }
+
+
+    public static void sortArrays() {
+        int position = 0;
+        letterPostions = new int[26][2];
+        
+        for (char letter = 'a'; letter <= 'z'; letter++ ) {
+            int first = -1;
+            int last = -1;
+            
+            letterLoop:
+            for( int counter = 0; counter < index; counter++) {
+           
+                if(letter == words[counter].charAt(0) && first == -1 ) {
+                  
+                    first = counter;
+                    
+
+                } else if(letter < words[counter].charAt(0)) {
+                   
+                    last = counter - 2;
+                    letterPostions[position][0] = first;
+                    letterPostions[position][1] = last;
+                    System.out.println(letter + " starts at " + first + " ends at " + last);
+                    break letterLoop;
+                
+                }
+            }
+
+            if(letter == 'z') {
+                letterPostions[25][1] = index;
+            }
+            
+            position++;
+        }
+    }
+
 }
