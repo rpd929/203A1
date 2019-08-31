@@ -44,7 +44,7 @@ public class a1 {
            
             
             for (int counter = 0; counter < index; counter++) {
-                String reverseWord = " ";
+                String reverseWord = "";
                 for(int letter = words[counter].length(); letter > 0; letter--) {
                     reverseWord = reverseWord + words[counter].charAt(letter -1);
 
